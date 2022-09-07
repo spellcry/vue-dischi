@@ -26,10 +26,12 @@ export default {
         height: 100%;
         padding: 1rem;
         background-color: $light-grey;
-        transition: transform 150ms ease-in-out;
+        box-shadow: -3px 3px 10px rgba(255, 255, 255, 0);
+        transition: all 200ms ease-in-out;
         cursor: pointer;
         &:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
+            box-shadow: -3px 3px 10px rgba(255, 255, 255, 0.4);
         }
         .card__img {
             margin-bottom: $gap-description;
