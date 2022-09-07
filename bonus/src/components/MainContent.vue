@@ -1,6 +1,9 @@
 <template>
     <main class="main-content">
-        <div class="container">
+        <template v-if="!isLoaded">
+            <LoaderComponent/>
+        </template>
+        <div v-if="isLoaded" class="container">
             <div v-for="(card, index) in dischi" :key="index" class="col">
                 <Card :card="card"/>
             </div>
@@ -10,21 +13,27 @@
 
 <script>
 import Card from './CardComponent.vue';
+import LoaderComponent from './LoaderComponent.vue';
 
 export default {
     data() {
         return {
             dischi: [],
+            isLoaded: false,
         }
     },
     components: {
-        Card
+        Card,
+        LoaderComponent,
     },
     created() {
         this.axios
                 .get('https://flynn.boolean.careers/exercises/api/array/music')
                 .then((res) => {
                     this.dischi = res.data.response;
+                })
+                .finally(() => {
+                    this.isLoaded = true;
                 });
     }
 }
