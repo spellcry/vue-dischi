@@ -1,0 +1,13 @@
+@import "@fontsource/open-sans/400.css"; // Weight 500.
+@import "@fontsource/open-sans/700.css"; // Italic variant.
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
