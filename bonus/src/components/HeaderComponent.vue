@@ -36,8 +36,7 @@ export default {
     },
     methods: {
         setAuthorSelect() {
-            if ( this.genere === '1' )
-                this.author = 'Tutti';
+            this.author = 'Tutti';
         }
     }
 }
