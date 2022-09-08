@@ -1,7 +1,7 @@
 <template>
     <main class="main-content">
         <div class="container">
-            <div v-for="(card, index) in dischi" :key="index" class="col">
+            <div v-for="(card, index) in dischiFiltrati" :key="index" class="col">
                 <Card :card="card"/>
             </div>
         </div>
@@ -16,6 +16,34 @@ export default {
         return {
             dischi: [],
         }
+    },
+    computed: {
+        dischiFiltrati() {
+            return this.dischi.filter((disco) => {
+                let genreText;
+                switch (this.genere) {
+                    case '1':
+                        genreText = '';
+                        break;
+                    case '2':
+                        genreText = 'Rock';
+                        break;
+                    case '3':
+                        genreText = 'Pop';
+                        break;
+                    case '4':
+                        genreText = 'Jazz';
+                        break;
+                    case '5':
+                        genreText = 'Metal';
+                        break;
+                }
+                return disco.genre.includes(genreText);                
+            });
+        }
+    },
+    props: {
+        genere: String,
     },
     components: {
         Card

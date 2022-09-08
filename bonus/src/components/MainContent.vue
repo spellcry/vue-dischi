@@ -1,10 +1,7 @@
 <template>
     <main class="main-content">
-        <template v-if="!isLoaded">
-            <LoaderComponent/>
-        </template>
-        <div v-if="isLoaded" class="container">
-            <div v-for="(card, index) in dischi" :key="index" class="col">
+        <div class="container">
+            <div v-for="(card, index) in dischiFiltrati" :key="index" class="col">
                 <Card :card="card"/>
             </div>
         </div>
@@ -13,27 +10,53 @@
 
 <script>
 import Card from './CardComponent.vue';
-import LoaderComponent from './LoaderComponent.vue';
 
 export default {
     data() {
         return {
             dischi: [],
-            isLoaded: false,
         }
     },
+    computed: {
+        dischiFiltrati() {
+            return this.dischi.filter((disco) => {
+                let genreText;
+                switch (this.genere) {
+                    case '1':
+                        genreText = '';
+                        break;
+                    case '2':
+                        genreText = 'Rock';
+                        break;
+                    case '3':
+                        genreText = 'Pop';
+                        break;
+                    case '4':
+                        genreText = 'Jazz';
+                        break;
+                    case '5':
+                        genreText = 'Metal';
+                        break;
+                }
+                console.log(this.genere);
+                return disco.genre.includes(genreText);                
+            });
+        }
+    },
+    props: {
+        genere: {
+            type: String,
+            default: ''
+        },
+    },
     components: {
-        Card,
-        LoaderComponent,
+        Card
     },
     created() {
         this.axios
                 .get('https://flynn.boolean.careers/exercises/api/array/music')
                 .then((res) => {
                     this.dischi = res.data.response;
-                })
-                .finally(() => {
-                    this.isLoaded = true;
                 });
     }
 }

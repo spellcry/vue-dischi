@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MainHeader/>
-    <MainContent/>
+    <MainHeader @filterGenere="getGenere"/>
+    <MainContent :genere="genere"/>
   </div>
 </template>
 
@@ -14,6 +14,17 @@ export default {
   components: {
     MainHeader,
     MainContent,
+  },
+  data() {
+    return {
+      genere: '1',
+    }
+  },
+  methods: {
+    getGenere(genere) {
+      this.genere = genere;
+      
+    },
   }
 }
 </script>
