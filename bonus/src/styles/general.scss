@@ -16,4 +16,9 @@ img {
 label {
     margin-right: 1rem;
     color: $white;
+    font-size: $font-filter;
+}
+
+select {
+    font-size: $font-filter;
 }
