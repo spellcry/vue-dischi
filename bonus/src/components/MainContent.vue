@@ -86,6 +86,7 @@ export default {
             display: flex;
             flex-wrap: wrap;
             gap: $gap;
+            flex-basis: 100%;
             max-width: 1200px;
             margin-inline: auto;
             .col {

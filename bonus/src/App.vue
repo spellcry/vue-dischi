@@ -25,6 +25,7 @@ export default {
   methods: {
     getGenere(genere) {
       this.genere = genere;
+      this.author = 'Tutti';
     },
     getAuthor(author) {
       this.author = author;
