@@ -21,7 +21,7 @@ export default {
         dischiAuthorNameFixed() {
             return this.dischi.map((disco) => {
                 if ( disco.author === 'Michael Jacjson' )
-                    disco.author = 'Micheal Jackson'
+                    disco.author = 'Michael Jackson'
                 return disco;
             });
         },
