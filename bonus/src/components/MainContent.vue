@@ -84,6 +84,7 @@ export default {
         background-color: $dark-grey;
         .container {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             gap: $gap;
             flex-basis: 100%;
