@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      genere: '',
+      genere: '1',
     }
   },
   methods: {
