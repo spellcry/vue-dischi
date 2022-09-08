@@ -1,7 +1,7 @@
 <template>
     <main class="main-content">
         <div class="container">
-            <div v-for="(card, index) in dischiFiltrati" :key="index" class="col">
+            <div v-for="(card, index) in dischiFiltratiPerAutore" :key="index" class="col">
                 <Card :card="card"/>
             </div>
         </div>
@@ -14,7 +14,7 @@ import Card from './CardComponent.vue';
 export default {
     data() {
         return {
-            dischi: [],
+            dischi: [],            
         }
     },
     computed: {
@@ -45,16 +45,18 @@ export default {
                         genreText = 'Metal';
                         break;
                 }
-                console.log(this.genere);
                 return disco.genre.includes(genreText);                
+            })
+        },
+        dischiFiltratiPerAutore() {
+            return this.dischiFiltrati.filter((disco) => {
+                return this.author === 'Tutti' ? true : disco.author === this.author;
             });
         }
     },
     props: {
-        genere: {
-            type: String,
-            default: ''
-        },
+        genere: String,
+        author: String,
     },
     components: {
         Card
@@ -64,7 +66,10 @@ export default {
                 .get('https://flynn.boolean.careers/exercises/api/array/music')
                 .then((res) => {
                     this.dischi = res.data.response;
-                });
+        });
+    },
+    updated() {
+        this.$emit('genreSelected', this.dischiFiltrati);
     }
 }
 </script>

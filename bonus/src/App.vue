@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MainHeader @filterGenere="getGenere"/>
-    <MainContent :genere="genere"/>
+    <MainHeader @filterGenere="getGenere" @filterAuthor="getAuthor" :filteredDisk="filteredDisk"/>
+    <MainContent @genreSelected="setAuthorFilter" :genere="genere" :author="author"/>
   </div>
 </template>
 
@@ -18,13 +18,20 @@ export default {
   data() {
     return {
       genere: '1',
+      author: 'Tutti',
+      filteredDisk: [],
     }
   },
   methods: {
     getGenere(genere) {
       this.genere = genere;
-      console.log(this.genere);
     },
+    getAuthor(author) {
+      this.author = author;
+    },
+    setAuthorFilter(dischiFiltrati) {
+      this.filteredDisk = dischiFiltrati;
+    }
   }
 }
 </script>

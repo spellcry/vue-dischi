@@ -3,13 +3,20 @@
         <img src="../assets/spotify_logo.png" alt="">
         <div class="filters">
             <div class="filter">
-                <label for="filters__genere">Genere</label>
-                <select @click="$emit('filterGenere', genere)" v-model="genere" id="filters__genere" class="filter__genere">
+                <label for="filter__genere">Genere</label>
+                <select @change="$emit('filterGenere', genere)" v-model="genere" id="filter__genere" class="filter__genere">
                     <option value="1">Tutti</option>
                     <option value="2">Rock</option>
                     <option value="3">Pop</option>
                     <option value="4">Jazz</option>
                     <option value="5">Metal</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label for="filter_author">Artista</label>
+                <select @change="$emit('filterAuthor', author)" v-model="author" id="filter_author" class="filter__author">
+                    <option value="Tutti">Tutti</option>
+                    <option v-for="(disk, index) in filteredDisk" :key="index" :value="disk.author">{{ disk.author }}</option>
                 </select>
             </div>
         </div>
@@ -18,9 +25,13 @@
 
 <script>
 export default {
+    props: {
+        filteredDisk: Array,
+    },
     data() {
         return {
             genere: '1',
+            author: 'Tutti',
         }
     },
 }
