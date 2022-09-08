@@ -18,8 +18,15 @@ export default {
         }
     },
     computed: {
+        dischiAuthorNameFixed() {
+            return this.dischi.map((disco) => {
+                if ( disco.author === 'Michael Jacjson' )
+                    disco.author = 'Micheal Jackson'
+                return disco;
+            });
+        },
         dischiFiltrati() {
-            return this.dischi.filter((disco) => {
+            return this.dischiAuthorNameFixed.filter((disco) => {
                 let genreText;
                 switch (this.genere) {
                     case '1':
