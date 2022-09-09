@@ -18,6 +18,14 @@ export default {
         }
     },
     computed: {
+        genreList() {
+            let genreArray = [];
+            this.dischi.forEach((disco) => {
+                if ( !genreArray.includes(disco.genre) )
+                    genreArray.push(disco.genre);
+            });
+            return genreArray;
+        },
         dischiAuthorNameFixed() {
             return this.dischi.map((disco) => {
                 if ( disco.author === 'Michael Jacjson' )
@@ -70,7 +78,8 @@ export default {
     },
     updated() {
         this.$emit('genreSelected', this.dischiFiltrati);
-    }
+        this.$emit('genreList', this.genreList);
+    },
 }
 </script>
 

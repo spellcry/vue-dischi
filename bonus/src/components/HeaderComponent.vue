@@ -6,10 +6,7 @@
                 <label for="filter__genere">Genere</label>
                 <select @change="$emit('filterGenere', genere); setAuthorSelect();" v-model="genere" id="filter__genere" class="filter__genere">
                     <option value="1">Tutti</option>
-                    <option value="2">Rock</option>
-                    <option value="3">Pop</option>
-                    <option value="4">Jazz</option>
-                    <option value="5">Metal</option>
+                    <option v-for="(genre, index) in genreList" :key="index" :value="`${index + 2}`">{{ genre }}</option>
                 </select>
             </div>
             <div class="filter">
@@ -27,6 +24,7 @@
 export default {
     props: {
         filteredDisk: Array,
+        genreList: Array,
     },
     data() {
         return {

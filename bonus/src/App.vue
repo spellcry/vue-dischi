@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MainHeader @filterGenere="getGenere" @filterAuthor="getAuthor" :filteredDisk="filteredDisk"/>
-    <MainContent @genreSelected="setAuthorFilter" :genere="genere" :author="author"/>
+    <MainHeader @filterGenere="getGenere" @filterAuthor="getAuthor" :genreList="genreList" :filteredDisk="filteredDisk"/>
+    <MainContent @genreList="setGenreList" @genreSelected="setAuthorFilter" :genere="genere" :author="author"/>
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
       genere: '1',
       author: 'Tutti',
       filteredDisk: [],
+      genreList: [],
     }
   },
   methods: {
@@ -32,6 +33,9 @@ export default {
     },
     setAuthorFilter(dischiFiltrati) {
       this.filteredDisk = dischiFiltrati;
+    },
+    setGenreList(genreList) {
+      this.genreList = genreList;
     }
   }
 }
