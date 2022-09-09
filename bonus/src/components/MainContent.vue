@@ -30,6 +30,18 @@ export default {
                 return gen1 < gen2 ? -1 : gen1 > gen2 ? 1 : 0;
             });
         },
+        authorList() {
+            let authorArray = [];
+            this.dischiFiltrati.forEach((disco) => {
+                if ( !authorArray.includes(disco.author) )
+                    authorArray.push(disco.author);
+            });
+            return authorArray.sort((author1, author2) => {
+                const aut1 = author1.toLowerCase();
+                const aut2 = author2.toLowerCase();
+                return aut1 < aut2 ? -1 : aut1 > aut2 ? 1 : 0;
+            });
+        },
         dischiAuthorNameFixed() {
             return this.dischi.map((disco) => {
                 if ( disco.author === 'Michael Jacjson' )
@@ -39,25 +51,7 @@ export default {
         },
         dischiFiltrati() {
             return this.dischiAuthorNameFixed.filter((disco) => {
-                let genreText;
-                switch (this.genere) {
-                    case '1':
-                        genreText = '';
-                        break;
-                    case '2':
-                        genreText = 'Rock';
-                        break;
-                    case '3':
-                        genreText = 'Pop';
-                        break;
-                    case '4':
-                        genreText = 'Jazz';
-                        break;
-                    case '5':
-                        genreText = 'Metal';
-                        break;
-                }
-                return disco.genre.includes(genreText);                
+                return this.genere === 'Tutti' ? true : disco.genre.includes(this.genere);                
             })
         },
         dischiFiltratiPerAutore() {
@@ -83,6 +77,7 @@ export default {
     updated() {
         this.$emit('genreSelected', this.dischiFiltrati);
         this.$emit('genreList', this.genreList);
+        this.$emit('authorList', this.authorList);
     },
 }
 </script>

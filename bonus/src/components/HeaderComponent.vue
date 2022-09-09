@@ -5,15 +5,15 @@
             <div class="filter">
                 <label for="filter__genere">Genere</label>
                 <select @change="$emit('filterGenere', genere); setAuthorSelect();" v-model="genere" id="filter__genere" class="filter__genere">
-                    <option value="1">Tutti</option>
-                    <option v-for="(genre, index) in genreList" :key="index" :value="`${index + 2}`">{{ genre }}</option>
+                    <option value="Tutti">Tutti</option>
+                    <option v-for="(genre, index) in genreList" :key="index" :value="genre">{{ genre }}</option>
                 </select>
             </div>
             <div class="filter">
                 <label for="filter_author">Artista</label>
                 <select @change="$emit('filterAuthor', author)" v-model="author" id="filter_author" class="filter__author">
                     <option value="Tutti">Tutti</option>
-                    <option v-for="(disk, index) in filteredDisk" :key="index" :value="disk.author">{{ disk.author }}</option>
+                    <option v-for="(author, index) in authorList" :key="index" :value="author">{{ author }}</option>
                 </select>
             </div>
         </div>
@@ -23,12 +23,12 @@
 <script>
 export default {
     props: {
-        filteredDisk: Array,
         genreList: Array,
+        authorList: Array,
     },
     data() {
         return {
-            genere: '1',
+            genere: 'Tutti',
             author: 'Tutti',
         }
     },

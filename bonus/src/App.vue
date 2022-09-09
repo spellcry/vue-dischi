@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MainHeader @filterGenere="getGenere" @filterAuthor="getAuthor" :genreList="genreList" :filteredDisk="filteredDisk"/>
-    <MainContent @genreList="setGenreList" @genreSelected="setAuthorFilter" :genere="genere" :author="author"/>
+    <MainHeader @filterGenere="getGenere" @filterAuthor="getAuthor" :genreList="genreList" :authorList="authorList"/>
+    <MainContent @authorList="setAuthorList" @genreList="setGenreList" @genreSelected="setAuthorFilter" :genere="genere" :author="author"/>
   </div>
 </template>
 
@@ -17,10 +17,11 @@ export default {
   },
   data() {
     return {
-      genere: '1',
+      genere: 'Tutti',
       author: 'Tutti',
       filteredDisk: [],
       genreList: [],
+      authorList: [],
     }
   },
   methods: {
@@ -36,7 +37,10 @@ export default {
     },
     setGenreList(genreList) {
       this.genreList = genreList;
-    }
+    },
+    setAuthorList(authorList) {
+      this.authorList = authorList;
+    },
   }
 }
 </script>
