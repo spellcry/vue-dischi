@@ -24,7 +24,11 @@ export default {
                 if ( !genreArray.includes(disco.genre) )
                     genreArray.push(disco.genre);
             });
-            return genreArray;
+            return genreArray.sort((genre1, genre2) => {
+                const gen1 = genre1.toLowerCase();
+                const gen2 = genre2.toLowerCase();
+                return gen1 < gen2 ? -1 : gen1 > gen2 ? 1 : 0;
+            });
         },
         dischiAuthorNameFixed() {
             return this.dischi.map((disco) => {
